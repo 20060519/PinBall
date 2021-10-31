@@ -12,6 +12,9 @@ public class BallController : MonoBehaviour
     //ゲームオーバを表示するテキスト
     private GameObject gameoverText;
 
+    //スコア
+    private int score = 0;
+
     // Use this for initialization
     void Start()
     {
@@ -29,5 +32,29 @@ public class BallController : MonoBehaviour
             this.gameoverText.GetComponent<Text>().text = "Game Over";
         }
 
+    }
+
+    private void OnCollisionEnter(Collision collisionInfo)
+    {
+       if (collisionInfo.gameObject.tag == "SmallStar")
+        {
+            //スコアを加算する
+            score += 5;
+        }
+
+       if (collisionInfo.gameObject.tag == "LargeStar")
+        {
+            score += 15;
+        }
+
+       if (collisionInfo.gameObject.tag == "SmallCloud")
+        {
+            score += 10;
+        }
+
+        if (collisionInfo.gameObject.tag == "LargeCloud")
+        {
+            score += 20;
+        }
     }
 }
