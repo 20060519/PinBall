@@ -11,6 +11,8 @@ public class BallController : MonoBehaviour
 
     //ゲームオーバを表示するテキスト
     private GameObject gameoverText;
+    //Scoreを表示するテキスト
+    private GameObject gameScoreText;
 
     //スコア
     private int score = 0;
@@ -20,6 +22,8 @@ public class BallController : MonoBehaviour
     {
         //シーン中のGameOverTextオブジェクトを取得
         this.gameoverText = GameObject.Find("GameOverText");
+        //ScoreTextを取得
+        this.gameScoreText = GameObject.Find("Score");
     }
 
     // Update is called once per frame
@@ -42,19 +46,21 @@ public class BallController : MonoBehaviour
             score += 5;
         }
 
-       if (collisionInfo.gameObject.tag == "LargeStar")
+       if (collisionInfo.gameObject.tag == "LargeStartTag")
         {
             score += 15;
         }
 
-       if (collisionInfo.gameObject.tag == "SmallCloud")
+       if (collisionInfo.gameObject.tag == "SmallCloudTag")
         {
             score += 10;
         }
 
-        if (collisionInfo.gameObject.tag == "LargeCloud")
+        if (collisionInfo.gameObject.tag == "LargeCloudTag")
         {
             score += 20;
         }
+        //Scoreテキストを表示
+        this.gameoverText.GetComponent<Text>().text = score.ToString();
     }
 }
